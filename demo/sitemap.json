@@ -1,8 +1,9 @@
 {
-    "__home__": "my-home",
+    "": "my-home",
     "page1": "my-page1",
     "subpages": {
         "page1": "my-subpage1",
-        "page2": "my-subpage2" 
+        "page2": "my-subpage2",
+        "*": "my-dynamicpage"
     }
 }

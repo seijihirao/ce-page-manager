@@ -1,0 +1,23 @@
+<link rel="import" href="/components/polymer/polymer.html">
+<link rel="import" href="/components/app-route/app-route.html">
+
+<dom-module id="my-dynamicpage">
+	<template>
+
+		<div>
+			<h1>DEMO DYNAMIC</h1>
+			<h2>YOU CAME TO PAGE [[query]]!!</h2>
+		</div>
+
+	</template>
+	<script>
+		Polymer({
+			is: 'my-dynamicpage',
+            properties: {
+                query: {
+                    type: Array
+                }
+            }
+		})
+	</script>
+</dom-module>

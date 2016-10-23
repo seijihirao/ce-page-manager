@@ -12,7 +12,6 @@
 		<link rel="import" href="../../app-layout/app-drawer/app-drawer.html">
 		<link rel="import" href="../../app-layout/app-toolbar/app-toolbar.html">
 		<link rel="import" href="../ce-page-manager.html">
-		<link rel="import" href="../ce-page-view.html">
 
 		<style is="custom-style" include="demo-pages-shared-styles">
 		</style>
@@ -23,8 +22,15 @@
 			<h3>Basic ce-page-view Demo</h3>
 					
 			<style>
+				.wrapper{
+					display: inline-block;
+					
+					width: 100%;
+				}
 				.menu{
-					display: inline-table;
+					display: inline-block;
+
+					float: left;
 					margin: 0;
 					width: 40%;
 
@@ -34,6 +40,9 @@
 					background-color: rgb(215, 215, 215);
 				}
 				.content{
+					display: inline-block;
+
+					float: right;
 					margin: 1rem;
 					width: 50%;
 				}
@@ -41,20 +50,25 @@
 
 			<demo-snippet>
 				<template is="dom-bind">
-					<div class="menu">
-						<app-toolbar class="title">Menu</app-toolbar>
-						<app-toolbar><a href="/components/ce-page-manager/demo/">/</a></app-toolbar>
-						<app-toolbar><a href="/components/ce-page-manager/demo/page1">Page 1</a></app-toolbar>
-						<app-toolbar><a href="/components/ce-page-manager/demo/subpages/page1">SubPage 1</a></app-toolbar>
-						<app-toolbar><a href="/components/ce-page-manager/demo/subpages/page2">SubPage 2</a></app-toolbar>
+					<div class="wrapper">
+						<div class="menu">
+							<app-toolbar class="title">Menu</app-toolbar>
+							<app-toolbar><a href="/components/ce-page-manager/demo/">/</a></app-toolbar>
+							<app-toolbar><a href="/components/ce-page-manager/demo/page1">Page 1</a></app-toolbar>
+							<app-toolbar><a href="/components/ce-page-manager/demo/subpages/page1">SubPage 1</a></app-toolbar>
+							<app-toolbar><a href="/components/ce-page-manager/demo/subpages/page2">SubPage 2</a></app-toolbar>
+							<app-toolbar><a href="/components/ce-page-manager/demo/subpages/banana">Page Banana</a></app-toolbar>
+							<app-toolbar><a href="/components/ce-page-manager/demo/subpages/hue/hue/hue">Page hue</a></app-toolbar>
+						</div>
+
+						<div class="content">
+							<ce-page-manager
+								site-map="/demo/sitemap.json" 
+								pages-dir="/demo/demo_pages"
+								init-path="/components/ce-page-manager/demo">
+							</ce-page-manager>
+						</div>
 					</div>
-
-					<ce-page-manager class="content"
-						site-map="/demo/sitemap.json" 
-						pages-dir="/demo/demo_pages"
-						init-path="/components/ce-page-manager/demo">
-					</ce-page-manager>
-
 				</template>
 			</demo-snippet>
 		</div>
