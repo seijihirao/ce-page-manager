@@ -1,0 +1,159 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<link rel="import" href="../app-route/app-location.html">
+<link rel="import" href="../app-route/app-route.html">
+<link rel="import" href="../neon-animation/neon-animated-pages.html">
+
+<link rel="import" href="../ce-json-file/ce-json-file.html">
+
+<!--
+`ce-page-manager`
+Custom Element to help managing pages using polymer.
+
+@demo demo/index.html 
+-->
+
+<dom-module id="ce-page-manager">
+	<template>
+		<style>
+			:host {
+				display: inline-block;
+			}
+		</style>
+		
+		<app-location route="{{_route}}"></app-location>
+		
+		<ce-json-file 
+			path="[[siteMap]]" 
+			json="{{siteObject}}">
+		</ce-json-file>
+
+		<neon-animated-pages 
+			id="content" 
+			attr-for-selected="data-name" 
+			selected="[[_selectedPage]]" 
+			class="flex">
+		</neon-animated-pages>
+	</template>
+
+	<script>
+		Polymer({
+
+			is: 'ce-page-manager',
+
+			properties: {
+				/**
+				 * Path to sitemap json file
+				 */
+				siteMap: {
+					type: String,
+					value: '/sitemap'
+				},
+
+				/**
+				 * Sitemap object
+				 * 
+				 * Can be found from property `siteMap` or can be mannualy passed
+				 */
+				siteObject: {
+					type: Object
+				},
+
+				/**
+				 * Pages components directory
+				 */
+				pagesDir: {
+					type: String,
+					value: '/pages'
+				},
+
+				/**
+				 * Initial path for manager
+				 */
+				initPath: {
+					type: String,
+					value: ''
+				},
+
+				/**
+				 * Selected page string for neon-animated-page
+				 */
+				_selectedPage: {
+					type: String
+				},
+
+				/**
+				 * Route object from `app-location`
+				 */
+				_route: {
+					type: Object
+				}
+			},
+
+			observers: [
+				'_changePage(_route, siteMap)',
+				'_changeSiteMap(siteObject)'
+			],
+
+			_changePage: function(){
+				if(!this.siteObject){
+					return
+				}
+				
+				var path = this._route.path.replace(/\//g, '-').substring(1)
+				if(path[path.length - 1] == '-'){
+					path = path.substring(0, path.length - 1)
+				}
+
+				var url = this.pagesDir + '/' + this.$$('section[data-name="' + path + '"]').dataUrl + '.html'
+				
+				this.importHref(
+					url, 
+					() => {
+						console.log('TODO: 200 :)')
+						this.set('_selectedPage', path)	
+					},
+					() => {
+						console.log('TODO: 404 :(')
+					},
+					true
+				)
+			},
+
+			_changeSiteMap: function(){
+				this._loadElements(this.siteObject, this.initPath)
+			},
+
+			/**
+			 * Recusrive function to load elements from a json object
+			 * 
+			 * @param json {path: element} - json object to generate elements
+			 * @param path - initial path to add objects
+			 */
+			_loadElements: function(json, path){
+				for(key in json){
+					// iterate again, found a dict
+					if(typeof json[key] == 'object'){
+						this._loadElements(json[key], path + '/' + key)
+					}
+					// it's a path, found a string
+					else{
+						var el = document.createElement(json[key])
+						var section = document.createElement('section')
+						section.dataUrl = json[key]
+
+						if(key === '__home__'){
+							section.setAttribute('data-name', path.replace(/\//g, '-').substring(1))
+						}else{
+							section.setAttribute('data-name', path.replace(/\//g, '-').substring(1) + '-' + key)
+						}
+
+						section.appendChild(el)
+						Polymer.dom(this.$.content).appendChild(section)
+					}
+				}
+			}
+
+		});
+	</script>
+</dom-module>
