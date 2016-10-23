@@ -2,37 +2,74 @@
 
 Custom Element to help managing pages using polymer.
 
-## Install the Polymer-CLI
-
-First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `polymer serve` to serve your application locally.
-
-## Viewing Your Application
+## INSTALL
 
 ```
-$ polymer serve
+$ bower install --save ce-page-manager
 ```
 
-## Building Your Application
+## IMPORT
 
-```
-$ polymer build
-```
-
-This will create a `build/` folder with `bundled/` and `unbundled/` sub-folders
-containing a bundled (Vulcanized) and unbundled builds, both run through HTML,
-CSS, and JS optimizers.
-
-You can serve the built versions by giving `polymer serve` a folder to serve
-from:
-
-```
-$ polymer serve build/bundled
+```HTML
+    <link rel="import" href="../bower_components/ce-page-manager/json-page-manager.html">
 ```
 
-## Running Tests
+## USING
+
+```HTML
+    <ce-page-manager 
+        site-map="/my/sitemap.json" 
+        pages-dir="/my/pages/dir">
+    </ce-page-manager>
+```
+
+```json
+{
+    "": "my-page-home",
+    "page1": "my-page-element1",
+    "page2": "my-page-element2",
+    "subpages1": {
+        "page1": "my-page-element3",
+        "page2": "my-page-element4"
+    },
+    "subpages2": {
+        "": "my-page-element5",
+        "page1": "my-page-element6",
+        "page2": "my-page-element7"
+    },
+    "*": "my-dynamic-page"
+}
+```
+
+This is for the following folder structure
 
 ```
-$ polymer test
+my/
+    sitemap.json
+    pages/
+        dir/
+            my-page-home.html
+            my-page-element1.html
+            my-page-element2.html
+            my-page-element3.html
+            my-page-element4.html
+            my-page-element5.html
+            my-page-element6.html
+            my-page-element7.html
+            my-dynamic-page.html
 ```
 
-Your application is already set up to be tested via [web-component-tester](https://github.com/Polymer/web-component-tester). Run `polymer test` to run your application's test suite locally.
+And produce the following urls
+
+```
+/
+/page1
+/page2
+/subpages1/page1
+/subpages1/page2
+/subpages2/page1
+/subpages2/page2
+/*
+```
+
+> Note that any url that doesn't exists will go to /*
