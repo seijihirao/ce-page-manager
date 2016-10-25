@@ -69,6 +69,12 @@
 							</ce-page-manager>
 						</div>
 					</div>
+					
+					<script>
+						document.querySelector('ce-page-manager').addEventListener('page-change', function(e){
+							console.log(e.detail.path)
+						})
+					</script>
 				</template>
 			</demo-snippet>
 		</div>
