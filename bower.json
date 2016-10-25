@@ -2,6 +2,14 @@
   "name": "ce-page-manager",
   "description": "Custom Element to help managing pages using polymer.",
   "main": "ce-page-manager.html",
+  "keywords": [
+    "polymer",
+    "web",
+    "sitemap",
+    "component",
+    "web component",
+    "web-components"
+  ],
   "dependencies": {
     "polymer": "Polymer/polymer#^1.4.0",
     "neon-animation": "PolymerElements/neon-animation#^1.2.4",
