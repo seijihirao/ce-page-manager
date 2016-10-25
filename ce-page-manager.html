@@ -38,7 +38,11 @@ Custom Element to help managing pages using polymer.
 		<neon-animated-pages 
 			id="content" 
 			attr-for-selected="data-name" 
-			selected="[[_selectedPage]]" 
+			selected="[[_selectedPage]]"
+			animation-config="[[animationConfig]]"
+			entry-animation="[[entryAnimation]]"
+			exit-animation="[[exitAnimation]]"
+			animate-initial-selection="[[animateInitialSelection]]" 
 			class="flex">
 		</neon-animated-pages>
 	</template>
@@ -100,6 +104,40 @@ Custom Element to help managing pages using polymer.
 				 */
 				_route: {
 					type: Object
+				},
+
+				/**
+				 * Animation configuration. 
+				 * See PolymerElements/neon-animated-pages for more info.
+				 */
+				animationConfig: {
+					type: Object
+				},
+
+				/**
+				 * Convenience property for setting an 'entry' animation. 
+				 * Do not set animationConfig.entry manually if using this. 
+				 * The animated node is set to this if using this property.
+				 */
+				entryAnimation: {
+					type: String
+				},
+
+				/**
+				 * Convenience property for setting an 'exit' animation. 
+				 * Do not set animationConfig.exit manually if using this. 
+				 * The animated node is set to this if using this property.
+				 */
+				exitAnimation: {
+					type: String
+				},
+
+				/**
+				 * if true, the initial page selection will also be animated according to its animation config.
+				 */
+				animateInitialSelection: {
+					type: Boolean,
+					value: false
 				}
 			},
 
