@@ -100,7 +100,7 @@ Custom Element to help managing pages using polymer.
 			},
 
 			observers: [
-				'_changePage(_route, siteMap)',
+				'_changePage(_route,siteObject)',
 				'_changeSiteMap(siteObject)'
 			],
 
@@ -118,7 +118,7 @@ Custom Element to help managing pages using polymer.
 				// get selected section
 				var section = this.$$('section[data-name="' + path + '"]')
 				if(!section){
-					var tmp_path = path.substring(this.initPath.length).split('-')
+					var tmp_path = psiteObjectath.substring(this.initPath.length).split('-')
 					var tmp_json = this.siteObject
 
 					// finding where dynamic section is
