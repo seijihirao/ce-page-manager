@@ -11,7 +11,7 @@ $ bower install --save ce-page-manager
 ## IMPORT
 
 ```HTML
-    <link rel="import" href="../bower_components/ce-page-manager/json-page-manager.html">
+    <link rel="import" href="../bower_components/ce-page-manager/ce-page-manager.html">
 ```
 
 ## USING
@@ -73,3 +73,7 @@ And produce the following urls
 ```
 
 > Note that any url that doesn't exists will go to /*
+
+## EVENTS
+
+`page-change` is fired everytime a page is changed
