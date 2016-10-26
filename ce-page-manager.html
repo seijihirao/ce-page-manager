@@ -22,6 +22,10 @@ Custom Element to help managing pages using polymer.
 				width: 100%;
 				height: 100%;
 			}
+			neon-animated-pages > section,
+			neon-animated-pages > section > * {
+				display: block;
+			}
 		</style>
 		
 		<app-location route="{{_route}}"></app-location>
@@ -185,7 +189,9 @@ Custom Element to help managing pages using polymer.
 				this.importHref(
 					url, 
 					() => {
-						this.set('_selectedPage', path)	
+						this.set('_selectedPage', path)
+						this.$.content.style.height = this.$$('section.iron-selected > *').offsetHeight + 'px'
+
 						this.fire('page-change', {
 							path: this._route.path
 						})
