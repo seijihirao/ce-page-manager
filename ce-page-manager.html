@@ -190,11 +190,18 @@ Custom Element to help managing pages using polymer.
 					url, 
 					() => {
 						this.set('_selectedPage', path)
-						this.$.content.style.height = this.$$('section.iron-selected > *').offsetHeight + 'px'
+						var section_content = null
+						var try_get = setInterval(() => {
+							section_content = this.$$('section.iron-selected > *')
+							if (section_content) {
+								this.$.content.style.height = section_content.offsetHeight + 'px'
 
-						this.fire('page-change', {
-							path: this._route.path
-						})
+								this.fire('page-change', {
+									path: this._route.path
+								})
+								clearInterval(try_get)
+							}
+						}, 100)
 					},
 					() => {
 						console.log('No element found for [' + url + ']')
