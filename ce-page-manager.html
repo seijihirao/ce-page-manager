@@ -177,7 +177,7 @@ Custom Element to help managing pages using polymer.
 						if(typeof tmp_json === 'object' && tmp_path[i] in tmp_json){
 							tmp_json = tmp_json[tmp_path[i]]
 						}else{
-							path = this.initPath.replace(/\//g, '-').substring(1) + '-' + tmp_path.slice(0, i).join('-') + '-*'
+							path = (this.initPath.replace(/\//g, '-') + '-').substring(1) + tmp_path.slice(0, i).join('-') + '-*'
 							tmp_path = tmp_path.slice(i)
 							break
 						}
