@@ -66,6 +66,22 @@ Custom Element to help managing pages using polymer.
 				 * Fired when page changes.
 				 *
 				 * @event page-change
+				 * 
+				 * @property {string} path - new url path
+				 * @property {string} component - component's path that was being loaded
+				 */
+
+				/**
+				 * Fired when an error is encountered
+				 * The error will still be logged to console
+				 * 
+				 * @event error
+				 * 
+				 * @property {string} path - path that was being acessed,
+				 * @property {string} component - component path that was being imported, undefined if page not found
+				 * @property {object} error - error object
+				 * @property {number} error.status - 404 if element os page is not found,
+				 * @property {string} error.message - error message, the one found on console
 				 */
 
 				/**
@@ -116,6 +132,14 @@ Custom Element to help managing pages using polymer.
 				},
 
 				/**
+				 * URL Path 
+				 */
+				path: {
+					type: String,
+					notify: true
+				},
+
+				/**
 				 * Animation configuration. 
 				 * See PolymerElements/neon-animated-pages for more info.
 				 */
@@ -156,6 +180,8 @@ Custom Element to help managing pages using polymer.
 			],
 
 			_changePage: function(){
+				this.set('path', this._route.path)
+
 				if(!this.siteObject){
 					return
 				}
@@ -187,6 +213,13 @@ Custom Element to help managing pages using polymer.
 					section = this.$$('section[data-name="' + path + '"]')
 					if(!section){
 						console.log('No page found for [' + this._route.path + ']')
+						this.fire('error', {
+							path: this._route.path,
+							error: {
+								status: 404,
+								message: 'No page found for [' + this._route.path + ']'
+							}
+						})
 						return
 					}
 					section.children[0].query = tmp_path  
@@ -201,11 +234,20 @@ Custom Element to help managing pages using polymer.
 						this.set('_selectedPage', path)
 
 						this.fire('page-change', {
-							path: this._route.path
+							path: this.path,
+							component: url
 						})
 					},
 					() => {
 						console.log('No element found for [' + url + ']')
+						this.fire('error', {
+							path: this._route.path,
+							component: url,
+							error: {
+								status: 404,
+								message: 'No element found for [' + url + ']'
+							}
+						})
 					},
 					true
 				)

@@ -76,4 +76,32 @@ And produce the following urls
 
 ## EVENTS
 
-`page-change` is fired everytime a page is changed
+### on-page-change
+
+Fired when page changes.
+
+```json
+{
+    "path": "string",
+    "component": "string"
+}
+```
+
+### on-error
+
+Fired when an error is encountered
+
+The error will still be logged to console
+
+```json
+{
+    "path": "string",
+    "component": "string",
+    "error": {
+        "status": "number",
+        "message": "string"
+}
+```
+
+#### error.status
+ * 404 - element or page not found
