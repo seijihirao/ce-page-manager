@@ -228,20 +228,22 @@ Custom Element to help managing pages using polymer.
 				// lazy loads element
 				var url = this.pagesDir + '/' + section.dataUrl + '.html'
 				
+				var that = this //TODO: use arrow functions after more support is avaliable 
+
 				this.importHref(
 					url, 
-					() => {
-						this.set('_selectedPage', path)
+					function(){
+						that.set('_selectedPage', path)
 
-						this.fire('page-change', {
-							path: this.path,
+						that.fire('page-change', {
+							path: that.path,
 							component: url
 						})
 					},
-					() => {
+					function{
 						console.log('No element found for [' + url + ']')
-						this.fire('error', {
-							path: this._route.path,
+						that.fire('error', {
+							path: that._route.path,
 							component: url,
 							error: {
 								status: 404,
