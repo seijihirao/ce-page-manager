@@ -1,6 +1,6 @@
 {
   "name": "ce-page-manager",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "description": "Custom Element to help managing pages using polymer.",
   "authors": [
     "Rodrigo Seiji Piubeli Hirao"
