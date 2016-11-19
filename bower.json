@@ -3,9 +3,8 @@
   "version": "0.3.3",
   "description": "Custom Element to help managing pages using polymer.",
   "authors": [
-    "Rodrigo Seiji P. Hirao"
+    "Rodrigo Seiji Piubeli Hirao"
   ],
-  "main": "ce-page-manager.html",
   "keywords": [
     "polymer",
     "web",
@@ -14,6 +13,7 @@
     "web component",
     "web-components"
   ],
+  "main": "ce-page-manager.html",
   "repository": {
     "type": "git",
     "url": "git://github.com/seijihirao/ce-page-manager.git"
