@@ -1,5 +1,8 @@
 # \<ce-page-manager\>
 
+[![Bower version](https://badge.fury.io/bo/ce-page-manager.svg)](https://badge.fury.io/bo/ce-page-manager)
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/seijihirao/ce-page-manager)
+
 Custom Element to help managing pages using polymer.
 
 ## INSTALL
