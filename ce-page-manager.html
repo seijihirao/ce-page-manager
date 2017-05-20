@@ -4,7 +4,7 @@
 <link rel="import" href="../app-route/app-route.html">
 <link rel="import" href="../neon-animation/neon-animated-pages.html">
 
-<link rel="import" href="../ce-json-file/ce-json-file.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
 
 <!--
 `ce-page-manager`
@@ -39,10 +39,12 @@ Custom Element to help managing pages using polymer.
 		
 		<app-location route="{{_route}}"></app-location>
 		
-		<ce-json-file 
-			path="[[siteMap]]" 
-			json="{{siteObject}}">
-		</ce-json-file>
+		<iron-ajax 
+			auto
+			url="[[siteMap]]" 
+			handle-as="json"
+			last-response="{{siteObject}}">
+		</iron-ajax>
 
 		<neon-animated-pages 
 			id="content" 

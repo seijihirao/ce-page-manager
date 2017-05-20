@@ -21,10 +21,10 @@
   "license": "LICENSE.txt",
   "homepage": "https://github.com/seijihirao/ce-page-manager",
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.4.0",
+    "polymer": "Polymer/polymer#^1.9.1",
     "neon-animation": "PolymerElements/neon-animation#^1.2.4",
     "app-route": "PolymerElements/app-route#^0.9.2",
-    "ce-json-file": "*"
+    "iron-ajax": "PolymerElements/iron-ajax#^1.4.3"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
