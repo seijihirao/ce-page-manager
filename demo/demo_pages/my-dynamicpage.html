@@ -1,5 +1,4 @@
-<link rel="import" href="/components/polymer/polymer.html">
-<link rel="import" href="/components/app-route/app-route.html">
+<link rel="import" href="/components/polymer/polymer-element.html">
 
 <dom-module id="my-dynamicpage">
 	<template>
@@ -11,13 +10,17 @@
 
 	</template>
 	<script>
-		Polymer({
-			is: 'my-dynamicpage',
-            properties: {
-                query: {
-                    type: Array
-                }
+		class MyDynamicPage extends Polymer.Element{
+			static get is(){ return 'my-dynamicpage' }
+            static get properties() {
+                return {
+					query: {
+                    	type: Array
+                	}
+				}
             }
-		})
+		}
+
+		customElements.define(MyDynamicPage.is, MyDynamicPage)
 	</script>
 </dom-module>

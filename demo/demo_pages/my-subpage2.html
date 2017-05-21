@@ -1,5 +1,4 @@
-<link rel="import" href="/components/polymer/polymer.html">
-<link rel="import" href="/components/app-route/app-route.html">
+<link rel="import" href="/components/polymer/polymer-element.html">
 
 <dom-module id="my-subpage2">
 	<template>
@@ -11,8 +10,9 @@
 
 	</template>
 	<script>
-		Polymer({
-			is: 'my-subpage2'
-		})
+		class MySubpage2 extends Polymer.Element{
+			static get is(){ return 'my-subpage2' }
+		}
+		customElements.define(MySubpage2.is, MySubpage2)
 	</script>
 </dom-module>
